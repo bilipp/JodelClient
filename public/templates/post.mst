@@ -1,0 +1,91 @@
+<div class="row" style="position: relative; color: white; min-height: 200px; background-color: #{{details.color}}; padding-top: 10px;">
+    <div class="row" style="margin: 0;">
+        <div class="col-md-12">
+            <div class="center post-header">
+                <img class="icon-oj" src="imgs/crownIcon.png" srcset="imgs/crownIcon.png">
+                <span class="oj-text">OJ</span>
+                {{#details.from_home}}
+                <i class="fa fa-home" aria-hidden="true"></i> <small>Heimat</small>
+                {{/details.from_home}}
+                {{^details.from_home}}
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                {{details.distance}}
+                {{/details.from_home}}
+                &middot;
+                {{details.created_at}}
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin: 0;">
+        <div class="col-md-11" style="padding-top: 5px; padding-bottom: 20px;" id="jodelText">
+            {{^details.image_url}}
+            {{{details.message}}}
+            {{/details.image_url}}
+            {{#details.image_url}}
+            <a href="{{details.image_url}}" data-lighter>
+                <img src="{{details.image_url}}" style="height: 25%; width: 25%; padding-bottom: 10px;" />
+            </a>
+            {{/details.image_url}}
+        </div>
+        <div class="pull-right voting">
+            <img src="imgs/upvote.png" class="center-block vote-up">
+            <span class="votes center-block">{{details.vote_count}}</span>
+            <img src="imgs/downvote.png" class="center-block vote-down">
+        </div>
+    </div>
+    <div class="row" style="margin: 0; padding-bottom: 5px; position: absolute; bottom: 0; width: 100% ">
+        <div class="col-md-4">
+            {{#details.child_count}}
+            <img  src="imgs/messages-512.png"> {{details.child_count}}
+            {{/details.child_count}}
+        </div>
+        <div class="col-md-1 col-md-offset-2">
+            <div style="text-align: center; cursor: pointer;" onclick="loadRelated()">
+                <img  src="imgs/others.png">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row post-gap"></div>
+{{#replies}}
+<div class="row reply-list" style="color: white; min-height: 120px; background-color: #{{color}};">
+    <div class="row" style="margin: 0;">
+        <div class="col-md-12">
+            <div class="center post-header">
+                {{^replier}}
+                <img class="icon-oj" src="imgs/crownIcon.png" srcset="imgs/crownIcon.png">
+                <span class="oj-text">OJ</span>
+                {{/replier}}
+                {{#replier}}
+                    {{replier}}
+                {{/replier}}
+                {{#from_home}}
+                <i class="fa fa-home" aria-hidden="true"></i> <small>Heimat</small>
+                {{/from_home}}
+                {{^from_home}}
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    {{distance}}
+                {{/from_home}}
+                &middot;
+                {{created_at}}
+            </div>
+        </div>
+    </div>
+    <div class="col-md-11">
+        {{^image_url}}
+        {{{message}}}
+        {{/image_url}}
+        {{#image_url}}
+        <a href="{{image_url}}" data-lighter>
+            <img src="{{image_url}}" style="height: 25%; width: 25%; padding-bottom: 10px;" />
+        </a>
+        {{/image_url}}
+    </div>
+    <div class="pull-right voting">
+        <img src="imgs/upvote.png" class="center-block vote-up">
+        <span class="votes center-block">{{vote_count}}</span>
+        <img src="imgs/downvote.png" class="center-block vote-down">
+    </div>
+</div>
+<div class="row post-gap"></div>
+{{/replies}}

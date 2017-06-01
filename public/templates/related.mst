@@ -1,0 +1,37 @@
+{{#posts}}
+<div id="{{post_id}}" onclick="loadSingleJodel(this.id)" class="row post post-{{color}}">
+    <div class="row" style="margin: 0; padding-top: 5px;">
+        <div class="col-md-12">
+            {{#from_home}}
+            <i class="fa fa-home" aria-hidden="true"></i>
+            {{/from_home}}
+            {{^from_home}}
+            <i class="fa fa-map-marker" aria-hidden="true"></i>
+            {{/from_home}}
+        </div>
+    </div>
+    <div class="row" style="margin: 0;">
+        <div class="col-md-11" style="padding-top: 5px; padding-bottom: 20px;">
+            {{^image_url}}
+            {{{message}}}
+            {{/image_url}}
+            {{#image_url}}
+            <img src="{{image_url}}" style="height: 25%; width: 25%">
+            {{/image_url}}
+        </div>
+        <div class="pull-right voting">
+            <img src="imgs/upvote.png" class="center-block vote-up">
+            <span class="votes center-block">{{vote_count}}</span>
+            <img src="imgs/downvote.png" class="center-block vote-down">
+        </div>
+    </div>
+    <div class="row" style="margin: 0; padding-bottom: 5px;">
+        <div class="col-md-12">
+            {{#child_count}}
+            <img  src="imgs/messages-512.png"> {{child_count}}
+            {{/child_count}}
+        </div>
+    </div>
+</div>
+<div class="row post-gap"></div>
+{{/posts}}

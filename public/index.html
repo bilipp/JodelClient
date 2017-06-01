@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/jquery.lighter.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <style>
+            font-family: 'Lato', sans-serif;
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.lighter.js"></script>
+        <script src="js/mustache.min.js"></script>
+        <script src="js/main.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Jodel</title>
+    </head>
+    <body style="background: #ffc018;">
+        <div class="container">
+            <div class="navbar-fixed-top" style="background-color: white;">
+                <div class="row">
+                    <div class="col-xs-6 col-xs-offset-3">
+                        <h3 id="location" style="text-align: center;"></h3>
+                    </div>
+                    <div class="col-xs-1 col-xs-offset-1">
+                        <div style="padding-top: 10px; text-align: center">
+                            <b><span id="karma"></span></b>
+                            <p style="color: #FF9908;">Karma</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="text-align: center; padding-bottom: 10px">
+                    <div id="feed_new" class="btn btn-warning" style="text-decoration: none; color: white;">Neueste</div>
+                    <div id="feed_comment" class="btn btn-warning" style="text-decoration: none; color: white;">Am meisten kommentiert</div>
+                    <div id="feed_popular" class="btn btn-warning" style="text-decoration: none; color: white;">Am lautesten</div>
+                </div>
+            </div>
+            <div id="feed"></div>
+        </div>
+    </body>
+    <script>
+        $(document).ready(function(){
+            checkToken();
+            loadLocation();
+            loadRecentJodel();
+        });
+        $("#feed_popular").click(function(){
+            loadPopularJodel();
+        });
+        $("#feed_new").click(function(){
+            loadRecentJodel();
+        });
+        $("#feed_comment").click(function(){
+            loadDiscussedJodel();
+        });
+    </script>
+</html>
