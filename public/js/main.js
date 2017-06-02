@@ -10,11 +10,12 @@ function checkToken() {
                 "<h3>Access-Token</h3>" +
                 "<p>Um den Jodel-Webclient nutzen zu können, wird zunächst dein Access-Token benötigt.</p>" +
                 "<p><u>Dieses Access-Token wird nur lokal in deinem Browser und nicht auf unserem Server gespeichert.</u></p>" +
-                "<p>Das eigene Access-Token lässt sich in der Jodel-App herausfinden. Dazu öffnet in der App den User-Tab und klickt oben links auf das Zahnrad. In der Liste wählt man nun 'Contact us' aus. Anschließend lässt sich das Access-Token im Textfeld 'Client Info' auslesen.</p>" +
-                "<div class='form-group'>" +
-                    "<input id='token_input' type='text' placeholder='Access-Token' />" +
+                "<p>Das eigene Access-Token lässt sich in der Jodel-App herausfinden. Dazu öffnet in der App den User-Tab und klickt oben links auf das Zahnrad.<br />" +
+                " In der Liste wählt man nun 'Contact us' aus. Anschließend lässt sich das Access-Token im Textfeld 'Client Info' auslesen.</p>" +
+                "<div class='form-group row'>" +
+                    "<input id='token_input' style='text-align: center;' class='col-md-6 col-md-offset-3 col-sm-12' type='text' placeholder='Access-Token einfügen' />" +
                 "</div>" +
-                "<button class='btn btn-default' onclick='insertToken();'>Abschicken</button>" +
+                "<button class='btn btn-success' onclick='insertToken();'>Abschicken</button>" +
             "</div>"
         );
         $("#location").html("Jodel-Webclient");
