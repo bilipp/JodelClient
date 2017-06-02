@@ -5,9 +5,30 @@ function checkToken() {
     access_token = getCookie("access_token");
     if(access_token == "" || access_token == "mit access_token ersetzen"){
         setCookie("access_token", "mit access_token ersetzen", 10);
-        $("#feed").html("<h3 style='text-align: center'>bitte access_token als Cookie setzen</h3>");
+        $("#feed").html(
+            "<div id='set_access_token' style='text-align: center;'>" +
+                "<h3>Access-Token</h3>" +
+                "<p>Um den Jodel-Webclient nutzen zu können, wird zunächst dein Access-Token benötigt.</p>" +
+                "<p><u>Dieses Access-Token wird nur lokal in deinem Browser und nicht auf unserem Server gespeichert.</u></p>" +
+                "<p>Das eigene Access-Token lässt sich in der Jodel-App herausfinden. Dazu öffnet in der App den User-Tab und klickt oben links auf das Zahnrad. In der Liste wählt man nun 'Contact us' aus. Anschließend lässt sich das Access-Token im Textfeld 'Client Info' auslesen.</p>" +
+                "<div class='form-group'>" +
+                    "<input id='token_input' type='text' placeholder='Access-Token' />" +
+                "</div>" +
+                "<button class='btn btn-default' onclick='insertToken();'>Abschicken</button>" +
+            "</div>"
+        );
         throw "No access_token available - set cookie 'access_token'";
     }
+}
+
+function insertToken(){
+    var token = $("#token_input").val();
+    if(token == ""){
+
+        return false;
+    }
+    setCookie("access_token", token, 7);
+    location.reload();
 }
 
 function formatTime(time){
@@ -84,7 +105,6 @@ function loadDiscussedJodel() {
 }
 
 function loadSingleJodel(id){
-    if(id.length != 24) return alert("old post");
     $('#feed').html("<div class='row' style='text-align: center; padding: 20px;'><i style='color: white; text-align: center' class='fa fa-spinner fa-spin fa-3x fa-fw'></i></div>");
     $.when(getSingleJodel(id, access_token), getSingleTemplate())
         .done(function(jsonData, templateData){
