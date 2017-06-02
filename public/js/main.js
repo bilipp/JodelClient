@@ -15,7 +15,14 @@ function formatTime(time){
     var date = new Date(formatted);
     var hours = date.getHours();
     var minutes = "0" + date.getMinutes();
-    var formattedTime = hours + ':' + minutes.substr(-2);
+    //Wenn nicht heute, dann zusätzlich Datum ausgeben
+    var today = new Date();
+    if(today.getDay() != date.getDay()){
+        var formattedTime = hours + ':' + minutes.substr(-2);
+    }
+    else{
+        var formattedTime = hours + ':' + minutes.substr(-2);
+    }
    return formattedTime;
 }
 
@@ -126,9 +133,15 @@ function loadRelated(){
         })
 }
 function loadAllRelated(input){
-    $.when(getRelatedTemplate(), getPostRelated(input))
-        .done(function(templateData, json){
-            var rendered = Mustache.render(templateData[0], json[0]);
+    $('#feed').html("<div class='row' style='text-align: center; padding: 20px;'><i style='color: white; text-align: center' class='fa fa-spinner fa-spin fa-3x fa-fw'></i></div>");
+    $.when(getTemplate(), getPostRelated(input))
+        .done(function(templateData, jsonData){
+            for(i = 0; i<jsonData[0]["posts"].length; i++){
+                jsonData["0"]["posts"][i]["created_at"] = formatTime(jsonData["0"]["posts"][i]["created_at"]);
+                jsonData["0"]["posts"][i]["distance"] = formatDistance(jsonData["0"]["posts"][i]["distance"]);
+                jsonData["0"]["posts"][i]["message"] = jsonData["0"]["posts"][i]["message"].replace(/(\r\n|\n\r|\r|\n)/g, "<br>");
+            }
+            var rendered = Mustache.render("{{#posts}}"+templateData[0]+"{{/posts}}", jsonData[0]);
             loadKarma();
             // console.log(rendered);
             $('#feed').html(rendered);
@@ -176,7 +189,7 @@ function getPostRelated(input_array){
 }
 
 function getRelatedJodel(text){
-    text = encodeURI(text);
+    text = encodeURI(text.trim());
     return $.getJSON("https://jodel.kokain.me/?related&text="+text);
 }
 
