@@ -30,7 +30,10 @@ function insertToken(){
         return false;
     }
     setCookie("access_token", token, 7);
-    location.reload();
+    access_token = token;
+    loadLocation();
+    loadRecentJodel();
+    // location.reload();
 }
 
 function formatTime(time){
