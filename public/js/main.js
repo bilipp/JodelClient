@@ -17,6 +17,7 @@ function checkToken() {
                 "<button class='btn btn-default' onclick='insertToken();'>Abschicken</button>" +
             "</div>"
         );
+        $("#location").html("Jodel-Webclient");
         throw "No access_token available - set cookie 'access_token'";
     }
 }
